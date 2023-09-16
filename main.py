@@ -1,38 +1,82 @@
 
-#2.2 Implement a class called Player that represents a cricket player. The Player class should have a method called play() which prints "The player is playing cricket. Derive two classes, Batsman and Bowler, from the Player class. Override the play() method in each derived class to print "The batsman is batting" and "The bowler is bowling", respectively. Write a program to create objects of both the Batsman and Bowler classes and call the play() method for each object.
+# 2.1 Implement a class called BankAccount that represents a bank account. The class should have private attributes for account number, account holder name, and account balance. Include methods to deposit money, withdraw money, and display the account balance. Ensure that the account balance cannot be accessed directly from outside the class. Write a program to create an instance of the BankAccount class and test the deposit and withdrawal functionality.
 
-# Define the Player class
+class BankAccount:
 
-class Player:
+    def __init__(self, account_number, account_holder_name, initial_balance=0.0):
 
-    def play(self):
+        self.__account_number = account_number
 
-        print("The player is playing cricket.")
+        self.__account_holder_name = account_holder_name
 
-# Define the Batsman class, derived from Player
+        self.__account_balance = initial_balance
 
-class Batsman(Player):
 
-    def play(self):
 
-        print("The batsman is batting.")
+    def deposit(self, amount):
 
-# Define the Bowler class, derived from Player
+        if amount > 0:
 
-class Bowler(Player):
+            self.__account_balance += amount
 
-    def play(self):
+            print(f"Deposited ${amount:.2f} into account {self.__account_number}")
 
-        print("The bowler is bowling.")
+        else:
 
-# Create objects of Batsman and Bowler classes
+            print("Invalid deposit amount. Please deposit a positive amount.")
 
-batsman = Batsman()
 
-bowler = Bowler()
 
-# Call the play() method for each object
+    def withdraw(self, amount):
 
-batsman.play()
+        if amount > 0:
 
-bowler.play()
+            if self.__account_balance >= amount:
+
+                self.__account_balance -= amount
+
+                print(f"Withdrew ${amount:.2f} from account {self.__account_number}")
+
+            else:
+
+                print("Insufficient balance. Cannot withdraw.")
+
+        else:
+
+            print("Invalid withdrawal amount. Please withdraw a positive amount.")
+
+
+
+    def display_balance(self):
+
+        print(f"Account {self.__account_number} balance: ${self.__account_balance:.2f}")
+
+
+
+
+
+# Testing the BankAccount class
+
+if __name__ == "__main__":
+
+    # Create a BankAccount instance
+
+    account1 = BankAccount("123456", "John Doe", 1000.0)
+
+
+
+    # Deposit money
+
+    account1.deposit(500.0)
+
+
+
+    # Withdraw money
+
+    account1.withdraw(200.0)
+
+
+
+    # Display balance
+
+    account1.display_balance()
